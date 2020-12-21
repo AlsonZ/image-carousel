@@ -24,3 +24,12 @@ const nextImage = () => {
   }
   setImage();
 };
+
+const previousImage = () => {
+  if (currentImage <= 0) {
+    currentImage = 4;
+  } else {
+    currentImage--;
+  }
+  setImage();
+};
