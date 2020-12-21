@@ -46,3 +46,12 @@ body {
   width: 100%;
   height: 100%;
 }
+
+.carousel-container button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 5vw;
+  margin: 5px 10vw;
+  padding-bottom: 5px;
+}
