@@ -9,11 +9,22 @@ let carouselImageLinks = [
 ];
 let currentImage = 0;
 
+const preloadImages = () => {
+  carouselImageLinks.forEach((link) => {
+    let img = new Image();
+    console.log(link);
+    img.src = link;
+  });
+  // img.onload = () => {
+  //   backgroundImage.classList.add("load-image");
+  // };
+};
+
 const setImage = () => {
   carouselBackground.style.backgroundImage = `url(${carouselImageLinks[currentImage]})`;
   carouselImage.src = carouselImageLinks[currentImage];
 };
-
+preloadImages();
 setImage();
 
 const nextImage = () => {
