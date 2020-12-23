@@ -55,3 +55,17 @@ body {
   margin: 5px 10vw;
   padding-bottom: 5px;
 }
+
+.load-image {
+  filter: blur(40px);
+  animation: sharpen 1s forwards;
+}
+
+@keyframes sharpen {
+  0% {
+    filter: blur(40px);
+  }
+  100% {
+    filter: none;
+  }
+}
