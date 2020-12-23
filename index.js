@@ -1,39 +1,53 @@
 let carouselBackground = document.getElementById("carousel-background");
 let carouselImage = document.getElementById("carousel-image");
+let smallCarouselImageLinks = [
+  "./images/small-images/1.jpg",
+  "./images/small-images/2.jpg",
+  "./images/small-images/3.jpg",
+  "./images/small-images/4.jpg",
+  "./images/small-images/5.jpg",
+  "./images/small-images/6.jpg",
+];
 let carouselImageLinks = [
-  "https://picsum.photos/id/1022/800/600",
-  "https://picsum.photos/id/1035/800/600",
-  "https://picsum.photos/id/1049/800/600",
-  "https://picsum.photos/id/1051/800/600",
-  "https://picsum.photos/id/1004/800/600",
+  "./images/big-images/1.jpg",
+  "./images/big-images/2.jpg",
+  "./images/big-images/3.jpg",
+  "./images/big-images/4.jpg",
+  "./images/big-images/5.jpg",
+  "./images/big-images/6.jpg",
 ];
 let currentImage = 0;
 
-const preloadImages = () => {
-  carouselImageLinks.forEach((link) => {
-    let img = new Image();
-    console.log(link);
-    img.src = link;
-  });
-  // img.onload = () => {
-  //   backgroundImage.classList.add("load-image");
-  // };
+const preloadBigImage = (imageLink) => {
+  let img = new Image();
+  img.src = imageLink;
+  img.onload = () => {
+    setImage(carouselImageLinks[currentImage]);
+  };
 };
 
-const setImage = () => {
-  carouselBackground.style.backgroundImage = `url(${carouselImageLinks[currentImage]})`;
-  carouselImage.src = carouselImageLinks[currentImage];
+const setImage = (imageLink) => {
+  carouselImage.src = imageLink;
+  carouselImage.classList.add("load-image");
+  setTimeout(() => {
+    carouselImage.classList.remove("load-image");
+  }, 1100);
 };
-preloadImages();
-setImage();
+const setSmallImage = (imageLink) => {
+  preloadBigImage(imageLink);
+  carouselBackground.style.backgroundImage = `url(${imageLink})`;
+  setImage(imageLink);
+};
+
+setSmallImage(smallCarouselImageLinks[currentImage]);
 
 const nextImage = () => {
-  if (currentImage >= carouselImageLinks.length - 1) {
+  if (currentImage >= smallCarouselImageLinks.length - 1) {
     currentImage = 0;
   } else {
     currentImage++;
   }
-  setImage();
+  setSmallImage(smallCarouselImageLinks[currentImage]);
 };
 
 const previousImage = () => {
@@ -42,5 +56,5 @@ const previousImage = () => {
   } else {
     currentImage--;
   }
-  setImage();
+  setSmallImage(smallCarouselImageLinks[currentImage]);
 };
